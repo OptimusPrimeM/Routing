@@ -9,7 +9,7 @@ import { CoursesService } from './courses.service';
 import { CoursesComponent } from './courses.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'; 
-import { NgModule, ErrorHandler } from '@angular/core';
+import { NgModule, ErrorHandler, Component } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { CourseComponent } from './course/course.component';
@@ -30,6 +30,7 @@ import { RouterModule } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { GithubProfileComponent } from './github-profile/github-profile.component';
 import { NotFoundComponent } from './not-found/not-found.component'; 
+import { APP_BASE_HREF } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -59,14 +60,37 @@ import { NotFoundComponent } from './not-found/not-found.component';
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpModule
+    HttpModule,
+    RouterModule.forRoot([
+      { 
+        path : '',
+        component : HomeComponent
+      },
+      { 
+        path : 'followers/:username',
+        component : GithubFollowersComponent
+      },
+      { 
+        path : 'followers',
+        component : GithubProfileComponent
+      },
+      { 
+        path : 'posts',
+        component : PostsComponent
+      },
+      { 
+        path : '**',
+        component : NotFoundComponent
+      }
+    ])
   ],
   providers: [
     PostService,
     CoursesService,
     AuthorsService,
     GithubFollowersService,
-    { provide: ErrorHandler, useClass: AppErrorHandler }
+    { provide: ErrorHandler, useClass: AppErrorHandler },
+    { provide: APP_BASE_HREF, useValue : '/' }
   ],
   bootstrap: [AppComponent]
 })
