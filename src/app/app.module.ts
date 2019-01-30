@@ -67,12 +67,12 @@ import { APP_BASE_HREF } from '@angular/common';
         component : HomeComponent
       },
       { 
-        path : 'followers/:username',
-        component : GithubFollowersComponent
+        path : 'followers/:id',
+        component : GithubProfileComponent
       },
       { 
         path : 'followers',
-        component : GithubProfileComponent
+        component : GithubFollowersComponent
       },
       { 
         path : 'posts',
