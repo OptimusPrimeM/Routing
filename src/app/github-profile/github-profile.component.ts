@@ -8,8 +8,11 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class GithubProfileComponent implements OnInit {
 
+
   constructor(private route: ActivatedRoute) { }
 
+
+  /*
   ngOnInit() {
     this.route.paramMap
       .subscribe(params => {
@@ -18,4 +21,17 @@ export class GithubProfileComponent implements OnInit {
       });
   }
 
+
+  
+    ngOnInit(): void {
+      console.log("In the ngOnInit()");
+    }
+  
+    */
+
+
+  ngOnInit() {
+    let userId = this.route.snapshot.paramMap.get('id');
+    console.log(userId);
+  }
 }
