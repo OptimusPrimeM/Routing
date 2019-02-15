@@ -14,8 +14,8 @@ export class GithubFollowersComponent implements OnInit {
   followers: any[];
 
   constructor(private service: GithubFollowersService, private route: ActivatedRoute) { }
-
-  ngOnInit() {
+ 
+  ngOnInit() { 
 
     Observable.combineLatest([
       this.route.paramMap,
@@ -24,11 +24,13 @@ export class GithubFollowersComponent implements OnInit {
       .subscribe(combine => {
         let id = combine[0].get('id');
         let page = combine[1].get('page');
+
+
+        // this.service.getAll({ id : id, page: page });
+
+        this.service.getAll()
+          .subscribe(followers => this.followers = followers);
       });
 
-    // this.service.getAll({ id: id, page: page });
-
-    this.service.getAll()
-      .subscribe(followers => this.followers = followers);
   }
 } 
